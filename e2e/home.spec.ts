@@ -13,3 +13,5 @@ test("verify login navigation link from homepage", async ({ page }) => {
   await loginLink.click();
   await expect(page).toHaveURL("http://localhost:3000/login");
 });
+
+

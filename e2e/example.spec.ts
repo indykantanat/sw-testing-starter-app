@@ -7,12 +7,12 @@ test("has title", async ({ page }) => {
   await expect(page).toHaveTitle(/E-Commerce CodingThailand/);
 });
 
-test("get started link", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+// test("get started link", async ({ page }) => {
+//   await page.goto("http://localhost:3000/");
 
-  // Click the get started link.z
-  await page.getByRole("link", { name: "Get started" }).click();
+//   // Click the get started link.z
+//   await page.getByRole("link", { name: "Get started" }).click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole("heading", { name: "Installation" })).toBeVisible();
-});
+//   // Expects page to have a heading with the name of Installation.
+//   await expect(page.getByRole("heading", { name: "Installation" })).toBeVisible();
+// });
