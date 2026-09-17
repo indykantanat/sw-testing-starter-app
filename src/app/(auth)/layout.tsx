@@ -35,7 +35,7 @@ export default function AuthLayout({
       lang="th"
       className={cn(promptFont.className, "font-sans", roboto.variable, loraHeading.variable)}
     >
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <ToastContainer position="top-right" autoClose={3000} theme="colored" />
       </body>

@@ -32,7 +32,7 @@ export default function AdminLayout({
       lang="th"
       className={cn(promptFont.className, "font-sans", roboto.variable, loraHeading.variable)}
     >
-      <body>
+      <body suppressHydrationWarning>
         <AdminNav />
         <main className="mx-auto w-full max-w-(--breakpoint-xl) px-4 py-8 sm:px-6 lg:px-8">
           {children}

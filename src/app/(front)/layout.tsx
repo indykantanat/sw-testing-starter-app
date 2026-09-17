@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="th"
       className={cn(promptFont.className, "font-sans", roboto.variable, loraHeading.variable)}
     >
-      <body>
+      <body suppressHydrationWarning>
         <Suspense fallback={<div className="h-16 border-b bg-background" />}>
           <Navbar />
         </Suspense>
