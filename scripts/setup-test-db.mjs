@@ -30,6 +30,7 @@ console.log("ลบฐานข้อมูลทดสอบเดิมแล�
 
 execFileSync("npx", ["prisma", "db", "push", "--url", TEST_DATABASE_URL], {
   stdio: "inherit",
+  shell: process.platform === "win32",
 })
 console.log(`สร้างตารางที่ ${TEST_DB_PATH} เรียบร้อย`)
 
