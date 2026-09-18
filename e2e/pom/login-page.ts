@@ -6,6 +6,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly submitButton: Locator;
   readonly errorToast: Locator;
+  readonly signupLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +14,7 @@ export class LoginPage {
     this.passwordInput = page.getByTestId("login-password");
     this.submitButton = page.getByTestId("login-submit");
     this.errorToast = page.locator(".Toastify__toast--error");
+    this.signupLink = page.getByTestId("login-signup-link");
   }
 
   async goto() {

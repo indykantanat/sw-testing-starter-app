@@ -208,7 +208,8 @@ node scripts/setup-test-db.mjs --empty   # สร้างตารางเป�
            cart-row              cart-item-qty    cart-total        cart-checkout
            cart-count            cart-empty       course-card       course-error
 เข้าระบบ   login-email           login-password   login-submit      logout-button
-           signup-name           signup-email     signup-submit     nav-user-name
+           login-signup-link     signup-name      signup-email      signup-submit
+           nav-user-name
 ติดต่อ     contact-name          contact-message  contact-submit    contact-success
 แดชบอร์ด   kpi-revenue-value     period-7d        revenue-total     recent-order-row
            stats-loading         stats-error      stats-retry       revenue-empty

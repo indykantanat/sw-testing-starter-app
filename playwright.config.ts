@@ -47,20 +47,23 @@ export default defineConfig({
        under e2e/admin/ and run via the chromium-admin project below. */
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], storageState: authFile },
       testIgnore: "**/admin/**",
+      dependencies: ["setup"],
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: { ...devices["Desktop Firefox"], storageState: authFile },
       testIgnore: "**/admin/**",
+      dependencies: ["setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: { ...devices["Desktop Safari"], storageState: authFile },
       testIgnore: "**/admin/**",
+      dependencies: ["setup"],
     },
 
     {
