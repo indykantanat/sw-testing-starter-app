@@ -7,6 +7,7 @@ test("login successfully when valid credentials are provided", async ({ page }) 
 
   // สมัครสมาชิกใหม่ก่อน เพื่อให้มี credential ที่ใช้ล็อกอินได้แน่นอน
   await page.goto("http://localhost:3000/signup");
+  await page.waitForLoadState("networkidle");
   await page.getByTestId("signup-name").fill(name);
   await page.getByTestId("signup-email").fill(email);
   await page.getByTestId("signup-password").fill(password);
@@ -24,6 +25,7 @@ test("login successfully when valid credentials are provided", async ({ page }) 
 
 test("shows an error toast when credentials are invalid", async ({ page }) => {
   await page.goto("http://localhost:3000/login");
+  await page.waitForLoadState("networkidle");
   await page.getByTestId("login-email").fill(`no-such-user-${Date.now()}@example.com`);
   await page.getByTestId("login-password").fill("WrongPassword123");
   await page.getByTestId("login-submit").click();
