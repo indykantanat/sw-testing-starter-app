@@ -1,18 +1,13 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { authFile } from '../playwright.config';
+import { LoginPage } from './pom/login-page';
 
 // ล็อกอินเป็น admin และบันทึก session เพื่อนำไปใช้กับ test อื่นๆ
 test('authen as admin', async ({ page }) => {
-    await page.goto('/login');
-    await page.waitForLoadState('networkidle');
-    const email = page.getByRole('textbox', { name: 'อีเมล' });
-    const password = page.getByRole('textbox', { name: 'รหัสผ่าน'});
-    await email.fill(process.env.ADMIN_USER!);
-    await password.fill(process.env.ADMIN_PASSWORD!);
-    const submitBtn = page.getByRole('button', { name: 'เข้าสู่ระบบ' });
-    await submitBtn.click();
-    await page.waitForURL('/');
-    await expect(page.getByTestId('nav-user-name')).toBeVisible();
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login(process.env.ADMIN_USER!, process.env.ADMIN_PASSWORD!);
+    await loginPage.expectLoginSuccess();
 
     await page.context().storageState({ path: authFile });
 })

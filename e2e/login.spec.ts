@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { LoginPage } from "./pom/login-page";
 
 test("login successfully when valid credentials are provided", async ({ page }) => {
   const name = "Login Test User";
@@ -15,21 +16,14 @@ test("login successfully when valid credentials are provided", async ({ page }) 
   await page.getByTestId("signup-submit").click();
   await expect(page).toHaveURL("http://localhost:3000/login");
 
-  await page.getByTestId("login-email").fill(email);
-  await page.getByTestId("login-password").fill(password);
-  await page.getByTestId("login-submit").click();
-
-  await expect(page).toHaveURL("http://localhost:3000/");
-  await expect(page.getByTestId("nav-user-name")).toContainText(name);
+  const loginPage = new LoginPage(page);
+  await loginPage.login(email, password);
+  await loginPage.expectLoginSuccess(name);
 });
 
 test("shows an error toast when credentials are invalid", async ({ page }) => {
-  await page.goto("http://localhost:3000/login");
-  await page.waitForLoadState("networkidle");
-  await page.getByTestId("login-email").fill(`no-such-user-${Date.now()}@example.com`);
-  await page.getByTestId("login-password").fill("WrongPassword123");
-  await page.getByTestId("login-submit").click();
-
-  await expect(page.locator(".Toastify__toast--error")).toBeVisible();
-  await expect(page).toHaveURL("http://localhost:3000/login");
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login(`no-such-user-${Date.now()}@example.com`, "WrongPassword123");
+  await loginPage.expectLoginError();
 });
